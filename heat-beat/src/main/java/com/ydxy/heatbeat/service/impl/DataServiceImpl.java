@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 
-import java.sql.SQLException;
-
 /**
  * @Author: huangsonglin
  * @Date:2020/7/13

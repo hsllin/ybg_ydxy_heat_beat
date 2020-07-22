@@ -1,8 +1,6 @@
 package com.ydxy.heatbeat.service;
 
 import com.ydxy.heatbeat.bean.TestDao;
-import com.ydxy.heatbeat.mapper.TestMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,5 +11,11 @@ import org.springframework.stereotype.Service;
 @Service
 public interface TestService {
 
-    public TestDao getTestById(String id);
+    /**
+     * 测试用
+     *
+     * @param id
+     * @return
+     */
+    TestDao getTestById(String id);
 }

@@ -11,7 +11,15 @@ import org.springframework.stereotype.Component;
 @Mapper
 @Component
 public interface ActiveMqMapper {
+    /**
+     * 获取数据数量
+     *
+     * @return
+     */
     Integer getNumOfMq();
 
-   void truncateTable();
+    /**
+     * 清空表
+     */
+    void truncateTable();
 }

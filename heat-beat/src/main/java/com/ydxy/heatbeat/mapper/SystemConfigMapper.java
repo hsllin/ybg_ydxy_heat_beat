@@ -12,5 +12,10 @@ import org.springframework.stereotype.Component;
 @Mapper
 @Component
 public interface SystemConfigMapper {
+    /**
+     * 获取学校名称
+     *
+     * @return
+     */
     SystemConfig getSchoolName();
 }

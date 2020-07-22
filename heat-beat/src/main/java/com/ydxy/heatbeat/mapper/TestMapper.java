@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 @Mapper
 public interface TestMapper {
     /**
+     * 测试用
+     *
      * @param id
      * @return
      */

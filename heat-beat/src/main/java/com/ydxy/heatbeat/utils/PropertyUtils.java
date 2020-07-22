@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
  */
 @ConfigurationProperties(prefix = "myproperty")
 @Component
-//@PropertySource(value= {"classpath:./config/application.properties","classpath:application.properties"},encoding = "utf-8")
 public class PropertyUtils {
 
     /**

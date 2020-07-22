@@ -17,7 +17,9 @@ public interface DataService {
     String getSchoolName();
 
     /**
-     * @return 获取ACTIVEMQ_MSGS这个表的消息条数
+     * 获取ACTIVEMQ_MSGS这个表的消息条数
+     *
+     * @return
      */
     Integer getNumOfMq();
 

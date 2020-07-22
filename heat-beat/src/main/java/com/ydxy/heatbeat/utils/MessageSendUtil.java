@@ -17,7 +17,9 @@ import java.util.List;
 @Component
 public class MessageSendUtil {
 
-    // JavaMailSender 在Mail 自动配置类 MailSenderAutoConfiguration 中已经导入，这里直接注入使用即可
+    /**
+     * JavaMailSender 在Mail 自动配置类 MailSenderAutoConfiguration 中已经导入，这里直接注入使用即可
+     */
     @Autowired
     JavaMailSender javaMailSender;
     @Autowired
@@ -25,14 +27,20 @@ public class MessageSendUtil {
 
     private static final String FROM = "hsl15112580698@163.com";
     private static final String CC = "1051701859@qq.com";
+    private static final String IS_ON_SEND_MESSAGE = "true";
 
-    //方法5个参数分别表示：邮件发送者、收件人、抄送人、邮件主题以及邮件内容
+    /**
+     * 方法5个参数分别表示：邮件发送者、收件人、抄送人、邮件主题以及邮件内容
+     *
+     * @param subject
+     * @param content
+     */
     public void sendSimpleMail(String subject, String content) {
         // 简单邮件直接构建一个 SimpleMailMessage 对象进行配置并发送即可
         List<String> toPeople = CollectionUtils.arrayToList(propertyUtils.getToPeople().split(","));
         //开启了邮件推送才推送，默认开启
         String useSendMail = propertyUtils.getUseSendMail();
-        if (StringUtils.equalsIgnoreCase(useSendMail, "true")) {
+        if (StringUtils.equalsIgnoreCase(useSendMail, IS_ON_SEND_MESSAGE)) {
             for (String toPerson : toPeople) {
                 SimpleMailMessage simpMsg = new SimpleMailMessage();
                 simpMsg.setFrom(FROM);
