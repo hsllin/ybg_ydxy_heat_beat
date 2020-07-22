@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ydxy.heatbeat.mapper.ActiveMqMapper">
+    <resultMap id="BaseResultMap" type="com.ydxy.heatbeat.bean.SystemConfig">
+        <id column="PARAMKEY" jdbcType="INTEGER" property="paramKey"/>
+        <result column="PARAMVALUE" jdbcType="VARCHAR" property="paramName"/>
+        <result column="DESCRIPTION" jdbcType="INTEGER" property="description"/>
+    </resultMap>
+
+    <!--    <insert id="insert" parameterType="cn.itweknow.sbmybatis.model.dao.Student" useGeneratedKeys="true" keyProperty="id">-->
+    <!--    insert into t_student(name,age,clazz_id,number) values-->
+    <!--    (#{name},#{age},#{clazzId},#{number})-->
+    <!--  </insert>-->
+
+    <!--    <update id="updateIgnoreNullById">-->
+    <!--        update t_student-->
+    <!--        <set>-->
+    <!--            <if test="student.name != null">-->
+    <!--                name = #{student.name}-->
+    <!--            </if>-->
+    <!--            <if test="student.age != null">-->
+    <!--                age = #{student.age}-->
+    <!--            </if>-->
+    <!--            <if test="student.clazzId != null">-->
+    <!--                clazz_id = #{student.clazzId}-->
+    <!--            </if>-->
+    <!--            <if test="student.number != null">-->
+    <!--                number = #{student.number}-->
+    <!--            </if>-->
+    <!--        </set>-->
+    <!--        where id = #{student.id}-->
+    <!--    </update>-->
+
+    <select id="getNumOfMq" resultType="integer">
+   SELECT count(1) FROM ACTIVEMQ_MSGS
+  </select>
+    <update id="truncateTable">
+        truncate TABLE ACTIVEMQ_MSGS
+    </update>
+
+
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ydxy.heatbeat.mapper.TestMapper">
+    <resultMap id="BaseResultMap" type="com.ydxy.heatbeat.bean.TestDao">
+        <id column="ID" jdbcType="INTEGER" property="id" />
+        <result column="ROLEID" jdbcType="VARCHAR" property="roleId" />
+        <result column="ROLENAME" jdbcType="INTEGER" property="roleName" />
+        <result column="DESCRIPTION" jdbcType="INTEGER" property="description" />
+    </resultMap>
+
+<!--    <insert id="insert" parameterType="cn.itweknow.sbmybatis.model.dao.Student" useGeneratedKeys="true" keyProperty="id">-->
+<!--    insert into t_student(name,age,clazz_id,number) values-->
+<!--    (#{name},#{age},#{clazzId},#{number})-->
+<!--  </insert>-->
+
+<!--    <update id="updateIgnoreNullById">-->
+<!--        update t_student-->
+<!--        <set>-->
+<!--            <if test="student.name != null">-->
+<!--                name = #{student.name}-->
+<!--            </if>-->
+<!--            <if test="student.age != null">-->
+<!--                age = #{student.age}-->
+<!--            </if>-->
+<!--            <if test="student.clazzId != null">-->
+<!--                clazz_id = #{student.clazzId}-->
+<!--            </if>-->
+<!--            <if test="student.number != null">-->
+<!--                number = #{student.number}-->
+<!--            </if>-->
+<!--        </set>-->
+<!--        where id = #{student.id}-->
+<!--    </update>-->
+
+    <select id="findById" resultMap="BaseResultMap">
+    select * from SYSTEM_ROLE where id = #{id}
+  </select>
+
+
+</mapper>
