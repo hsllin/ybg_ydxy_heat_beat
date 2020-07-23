@@ -65,7 +65,7 @@ public class McEngineJob {
     /**
      * 上一次发送消息的时间，避免如果工程启动失败，就一直在发邮件，就很烦
      */
-    private LocalDateTime lastSendMessageTime;
+    private LocalDateTime lastSendMessageTime = LocalDateTime.now();
 
     @Scheduled(cron = "${job.mcEngineJobCron}")
     public void startJob() {

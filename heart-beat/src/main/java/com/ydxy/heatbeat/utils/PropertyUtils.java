@@ -35,10 +35,19 @@ public class PropertyUtils {
     @Value("linuxCommands")
     public String linuxCommands;
     /**
-     *发送邮件的时间间隔，单位是小时，默认为12小时，即半天
+     * 发送邮件的时间间隔，单位是小时，默认为12小时，即半天
      */
     @Value("timeInterVal")
     public String timeInterVal;
+
+    @Value("spring.datasource.url")
+    public String sqlUrl;
+
+    @Value("spring.datasource.username")
+    public String sqlUSer;
+
+    @Value("spring.datasource.password")
+    public String sqlPassWord;
 
 
     public String getMcengineUrl() {
@@ -80,5 +89,29 @@ public class PropertyUtils {
 
     public void setTimeInterVal(String timeInterVal) {
         this.timeInterVal = timeInterVal;
+    }
+
+    public String getSqlUrl() {
+        return sqlUrl;
+    }
+
+    public void setSqlUrl(String sqlUrl) {
+        this.sqlUrl = sqlUrl;
+    }
+
+    public String getSqlUSer() {
+        return sqlUSer;
+    }
+
+    public void setSqlUSer(String sqlUSer) {
+        this.sqlUSer = sqlUSer;
+    }
+
+    public String getSqlPassWord() {
+        return sqlPassWord;
+    }
+
+    public void setSqlPassWord(String sqlPassWord) {
+        this.sqlPassWord = sqlPassWord;
     }
 }
