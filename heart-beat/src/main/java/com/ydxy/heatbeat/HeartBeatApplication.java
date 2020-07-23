@@ -11,10 +11,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 @SpringBootApplication
 @EnableScheduling
-public class HeatBeatApplication {
+public class HeartBeatApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(HeatBeatApplication.class, args);
+        SpringApplication.run(HeartBeatApplication.class, args);
     }
 
 }
