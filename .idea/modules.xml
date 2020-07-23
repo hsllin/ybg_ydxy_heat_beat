@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/heart-beat/heart-beat.iml" filepath="$PROJECT_DIR$/heart-beat/heart-beat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ybg_ydxy_heart_beat.iml" filepath="$PROJECT_DIR$/ybg_ydxy_heart_beat.iml" />
+    </modules>
+  </component>
+</project>

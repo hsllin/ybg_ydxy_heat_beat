@@ -6,14 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ybg_ydxy_heat_beat" />
-        <module name="heat-beat" />
+        <module name="heart-beat" />
+        <module name="ybg_ydxy_heart_beat" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="heart-beat" target="1.8" />
+      <module name="ybg_ydxy_heart_beat" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="heat-beat" options="-parameters" />
+      <module name="heart-beat" options="-parameters" />
     </option>
   </component>
 </project>

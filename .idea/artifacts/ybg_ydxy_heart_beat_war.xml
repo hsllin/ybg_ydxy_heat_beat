@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ybg_ydxy_heart_beat:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>ybg_ydxy_heart_beat</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="ybg_ydxy_heart_beat.war">
+      <element id="artifact" artifact-name="ybg_ydxy_heart_beat:war exploded" />
+    </root>
+  </artifact>
+</component>
