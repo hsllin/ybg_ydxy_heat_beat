@@ -116,6 +116,7 @@ public class McEngineJob {
         long timeInterval = Long.parseLong(propertyUtils.getTimeInterVal());
         //判断上一次发送消息的间隔，如果超过半天或者自定义的时间才发送消息，避免启动失败发消息太频繁
         if (duration.toHours() >= timeInterval) {
+            lastSendMessageTime = currentTime;
             messageSendUtil.sendSimpleMail(message, message);
         }
 
