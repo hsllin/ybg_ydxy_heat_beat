@@ -74,15 +74,15 @@ public class McEngineJob {
         }
         String url = propertyUtils.getMcengineUrl();
         //当访问mc工程返回false表示连接不上，挂掉了，需要发送短信通知管理员，然后尝试重启
-        if (!jobService.testUrlWithTimeOut(url, TIME_OUT_SECONDS)) {
+        if (!jobService.judgeUrlIsActive(url)) {
             //当连不上后再尝试连接一次
-            if (!jobService.testUrlWithTimeOut(url, TIME_OUT_SECONDS)) {
+            if (!jobService.judgeUrlIsActive(url)) {
                 String message = schoolName + "的消息工程挂了啊，过来整活" + url;
                 rebootMcEngine(message);
             }
         } else {
             int currentCountMqNum = dataService.getNumOfMq();
-            log.info("数据库activeMqCOunt数量:" + currentCountMqNum);
+            log.info("数据库activeMqCount数量:" + currentCountMqNum);
             log.info("统计次数countNum:" + countNum);
             if (currentCountMqNum >= lastActiveMqNum && currentCountMqNum > 0) {
                 lastActiveMqNum = currentCountMqNum;
@@ -94,7 +94,7 @@ public class McEngineJob {
             }
             if (countNum > MAX_COUNT_NUM) {
                 log.info("消息发送可能被阻塞，重启工程");
-                String message = schoolName + "的消息工程可能发送消息出现问题，已自动重启";
+                String message = schoolName + "的消息工程统计阻塞数量连续"+MAX_COUNT_NUM+"次只增不减，可能发送消息出现问题，已自动重启。当前阻塞数量："+countNum;
                 countNum = 0;
                 dataService.truncateActiveMqTable();
                 rebootMcEngine(message);
