@@ -1,6 +1,7 @@
 package com.ydxy.heatbeat.utils;
 
 import com.alibaba.druid.util.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -15,6 +16,7 @@ import java.util.List;
  * @Description:发送消息服务
  */
 @Component
+@Slf4j
 public class MessageSendUtil {
 
     /**
@@ -41,14 +43,18 @@ public class MessageSendUtil {
         //开启了邮件推送才推送，默认开启
         String useSendMail = propertyUtils.getUseSendMail();
         if (StringUtils.equalsIgnoreCase(useSendMail, IS_ON_SEND_MESSAGE)) {
-            for (String toPerson : toPeople) {
-                SimpleMailMessage simpMsg = new SimpleMailMessage();
-                simpMsg.setFrom(FROM);
-                simpMsg.setTo(toPerson);
-                simpMsg.setCc(CC);
-                simpMsg.setSubject(subject);
-                simpMsg.setText(content);
-                javaMailSender.send(simpMsg);
+            try {
+                for (String toPerson : toPeople) {
+                    SimpleMailMessage simpMsg = new SimpleMailMessage();
+                    simpMsg.setFrom(FROM);
+                    simpMsg.setTo(toPerson);
+                    simpMsg.setCc(CC);
+                    simpMsg.setSubject(subject);
+                    simpMsg.setText(content);
+                    javaMailSender.send(simpMsg);
+                }
+            } catch (Exception e) {
+                log.info("发送邮件出错：" + e.getMessage());
             }
         }
     }

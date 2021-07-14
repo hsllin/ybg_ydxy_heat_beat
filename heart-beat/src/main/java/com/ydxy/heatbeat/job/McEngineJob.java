@@ -83,7 +83,7 @@ public class McEngineJob {
         } else {
             int currentCountMqNum = dataService.getNumOfMq();
             log.info("数据库activeMqCount数量:" + currentCountMqNum);
-            log.info("统计次数countNum:" + countNum);
+            log.info("统计次数countNum:" + currentCountMqNum);
             if (currentCountMqNum >= lastActiveMqNum && currentCountMqNum > 0) {
                 lastActiveMqNum = currentCountMqNum;
                 countNum++;
@@ -94,7 +94,7 @@ public class McEngineJob {
             }
             if (countNum > MAX_COUNT_NUM) {
                 log.info("消息发送可能被阻塞，重启工程");
-                String message = schoolName + "的消息工程统计阻塞数量连续"+MAX_COUNT_NUM+"次只增不减，可能发送消息出现问题，已自动重启。当前阻塞数量："+countNum;
+                String message = schoolName + "的消息工程统计阻塞数量连续"+MAX_COUNT_NUM+"次只增不减，可能发送消息出现问题，已自动重启。当前阻塞数量："+currentCountMqNum;
                 countNum = 0;
                 dataService.truncateActiveMqTable();
                 rebootMcEngine(message);
@@ -123,8 +123,8 @@ public class McEngineJob {
         //然后重启mcengine
         List<String> commands = CollectionUtils.arrayToList(propertyUtils.getLinuxCommands().split(","));
         for (String command : commands) {
-            CommandUtils.exeCmd(command);
             try {
+                CommandUtils.exeCmd(command);
                 log.info("执行命令：" + command);
                 //过一段时间执行一次
                 Thread.sleep(SLEEP_TIME);
