@@ -4,6 +4,7 @@ import com.ydxy.heatbeat.service.DataService;
 import com.ydxy.heatbeat.service.JobService;
 import com.ydxy.heatbeat.service.TestService;
 import com.ydxy.heatbeat.utils.CommandUtils;
+import com.ydxy.heatbeat.utils.DingTalkUtils;
 import com.ydxy.heatbeat.utils.MessageSendUtil;
 import com.ydxy.heatbeat.utils.PropertyUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +16,11 @@ import org.springframework.util.StringUtils;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 /**
@@ -56,6 +61,8 @@ public class McEngineJob {
      */
     private int countNum = 0;
 
+    private boolean isFirstStart = true;
+
 
     /**
      * 学校名
@@ -75,9 +82,14 @@ public class McEngineJob {
         String url = propertyUtils.getMcengineUrl();
         //当访问mc工程返回false表示连接不上，挂掉了，需要发送短信通知管理员，然后尝试重启
         if (!jobService.judgeUrlIsActive(url)) {
+            try {
+                Thread.sleep(3000);
+            } catch (Exception e) {
+
+            }
             //当连不上后再尝试连接一次
             if (!jobService.judgeUrlIsActive(url)) {
-                String message = schoolName + "的消息工程挂了啊，过来整活" + url;
+                String message = schoolName + "的消息工程服务挂了啊，系统已自动重启消息工程。" ;
                 rebootMcEngine(message);
             }
         } else {
@@ -115,9 +127,17 @@ public class McEngineJob {
         Duration duration = Duration.between(lastSendMessageTime, currentTime);
         long timeInterval = Long.parseLong(propertyUtils.getTimeInterVal());
         //判断上一次发送消息的间隔，如果超过半天或者自定义的时间才发送消息，避免启动失败发消息太频繁
-        if (duration.toHours() >= timeInterval) {
+        if (isFirstStart || duration.toHours() >= timeInterval) {
             lastSendMessageTime = currentTime;
+            isFirstStart = false;
+            log.info("消息工程服务:" + message);
+            ExecutorService executor = Executors.newFixedThreadPool(2);
+            CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
+                DingTalkUtils.sendMessageByText("消息工程服务:" + message, new ArrayList<>(), true);
+            }, executor);
             messageSendUtil.sendSimpleMail(message, message);
+
+
         }
 
         //然后重启mcengine
