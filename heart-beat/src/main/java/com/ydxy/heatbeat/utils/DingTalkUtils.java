@@ -34,7 +34,7 @@ public class DingTalkUtils {
     /**
      * 钉钉群设置 webhook, 支持重置
      */
-    private static final String ACCESS_TOKEN = "https://oapi.dingtalk.com/robot/send?access_token=24798dfe14d83b4a10b02ce8769570311bbe96b2745c8734d850a8986d662dbe";
+    private static final String ACCESS_TOKEN = "https://oapi.dingtalk.com/robot/send?access_token=6b7c48c389c74128f2c0ca43880e8e7d7f8f36ba6bc38600eb562425a985a6a3";
 
     private static final String SECRET = "SEC240d620adf";
 

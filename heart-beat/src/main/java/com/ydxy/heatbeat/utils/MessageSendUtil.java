@@ -48,7 +48,7 @@ public class MessageSendUtil {
                     SimpleMailMessage simpMsg = new SimpleMailMessage();
                     simpMsg.setFrom(FROM);
                     simpMsg.setTo(toPerson);
-                    simpMsg.setCc(CC);
+//                    simpMsg.setCc(CC);
                     simpMsg.setSubject(subject);
                     simpMsg.setText(content);
                     javaMailSender.send(simpMsg);

@@ -2,6 +2,7 @@ package com.ydxy.heatbeat.utils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 
 /**
  * @Author: huangsonglin
@@ -9,6 +10,24 @@ import java.io.InputStreamReader;
  * @Description:在linux中调用命令
  */
 public class CommandUtils {
+
+    public static String exec(String cmd) {
+        try {
+            String[] cmdA = { "/bin/sh", "-c", cmd };
+            Process process = Runtime.getRuntime().exec(cmdA);
+            LineNumberReader br = new LineNumberReader(new InputStreamReader(process.getInputStream()));
+            StringBuffer sb = new StringBuffer();
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+                sb.append(line).append("\n");
+            }
+            return sb.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     /**
      * 输入linux命令
      *

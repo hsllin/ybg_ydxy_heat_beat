@@ -34,6 +34,9 @@ public class PropertyUtils {
 
     @Value("linuxCommands")
     public String linuxCommands;
+
+    @Value("urpCommands")
+    public String urpCommands;
     /**
      * 发送邮件的时间间隔，单位是小时，默认为12小时，即半天
      */
@@ -48,6 +51,12 @@ public class PropertyUtils {
 
     @Value("spring.datasource.password")
     public String sqlPassWord;
+
+    @Value("needObserveCloseWait")
+    public String needObserveCloseWait;
+
+    @Value("closeWaitNum")
+    public String closeWaitNum;
 
 
     public String getMcengineUrl() {
@@ -83,6 +92,14 @@ public class PropertyUtils {
         this.linuxCommands = linuxCommands;
     }
 
+    public String getUrpCommands() {
+        return urpCommands;
+    }
+
+    public void setUrpCommands(String urpCommands) {
+        this.urpCommands = urpCommands;
+    }
+
     public String getTimeInterVal() {
         return timeInterVal;
     }
@@ -113,5 +130,21 @@ public class PropertyUtils {
 
     public void setSqlPassWord(String sqlPassWord) {
         this.sqlPassWord = sqlPassWord;
+    }
+
+    public String getNeedObserveCloseWait() {
+        return needObserveCloseWait;
+    }
+
+    public void setNeedObserveCloseWait(String needObserveCloseWait) {
+        this.needObserveCloseWait = needObserveCloseWait;
+    }
+
+    public String getCloseWaitNum() {
+        return closeWaitNum;
+    }
+
+    public void setCloseWaitNum(String closeWaitNum) {
+        this.closeWaitNum = closeWaitNum;
     }
 }
